@@ -1,12 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import TopButton from './components/TopButtons';
 
 function App() {
+  const [query, setQuery] = useState({ q: 'tokyo' })
+  const [units, setUnits] = useState('metric')
+  const [weather, setWeather] = useState(null)
+
+  
+  const formatBackground = () => {
+    if (!weather) return ' from-cyan-700 to-blue-700';
+    const threshold = units === 'metric' ? 20 : 60;
+    if (weather.temp <= threshold) return 'from-cyan-700';
+    return 'from-cyan-700 to-blue-700'
+  }
   return (
-    <div className="bg-blue-500 text-white text-center p-4">
-    <h1 className="text-3xl font-bold">Bienvenue sur Tailwind CSS</h1>
-    <p className="mt-2">Ceci est un projet React avec Tailwind CSS.</p>
-  </div>
+    <div className={`mx-auto max-w-screen-md mt-4 py-5 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
+      <TopButton setQuery={setQuery} />
+     
+    </div>
   );
 }
 
