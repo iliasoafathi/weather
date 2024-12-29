@@ -1,13 +1,14 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import TopButton from './components/TopButtons';
+import Inputs from './components/Inputs';
 
 function App() {
   const [query, setQuery] = useState({ q: 'tokyo' })
   const [units, setUnits] = useState('metric')
   const [weather, setWeather] = useState(null)
 
-  
+
   const formatBackground = () => {
     if (!weather) return ' from-cyan-700 to-blue-700';
     const threshold = units === 'metric' ? 20 : 60;
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className={`mx-auto max-w-screen-md mt-4 py-5 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
       <TopButton setQuery={setQuery} />
+      <Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
      
     </div>
   );
