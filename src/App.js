@@ -6,7 +6,7 @@ import getFormattedWeatherData from './services/weatherServices';
 import TimeAndLocation from './components/TimeAndLocation';
 import TemperatureDetails from './components/TemperatureDetails';
 import Forecast from './components/Forecast';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function App() {
@@ -16,13 +16,17 @@ function App() {
   
   useEffect(() => {
     const fetchWeather = async () => {
-      await getFormattedWeatherData({ ...query, units }).then((data) => {
-        setWeather(data);
+      try {
+        const data = await getFormattedWeatherData({ ...query, units });
+        setWeather(data); 
         //console.log(weather);
-      });
-    }
+      } catch (error) {
+        toast.error("City not found. Please check the city name.");
+      }
+    };
+  
     fetchWeather();
-  }, [query, units])
+  }, [query, units]);
 
 
   const formatBackground = () => {
@@ -30,7 +34,7 @@ function App() {
     if (weather.temp <= (units === 'metric' ? 20 : 60)) return 'from-cyan-700';
     return 'from-cyan-700 to-blue-700'
   }
-  
+
   return (
     <div className={`mx-auto max-w-screen-md mt-4 py-5 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
       <TopButton setQuery={setQuery} />
@@ -43,6 +47,7 @@ function App() {
         <Forecast title="Daily forecast" items={weather.daily} />
       </div>
      )}
+      <ToastContainer />
     </div>
   );
 }
