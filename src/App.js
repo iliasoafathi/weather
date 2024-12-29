@@ -5,6 +5,7 @@ import Inputs from './components/Inputs';
 import getFormattedWeatherData from './services/weatherServices';
 import TimeAndLocation from './components/TimeAndLocation';
 import TemperatureDetails from './components/TemperatureDetails';
+import Forecast from './components/Forecast';
 
 
 
@@ -26,9 +27,10 @@ function App() {
 
   const formatBackground = () => {
     if (!weather) return ' from-cyan-700 to-blue-700';
-    if (weather.temp <= units === 'metric' ? 20 : 60) return 'from-cyan-700';
+    if (weather.temp <= (units === 'metric' ? 20 : 60)) return 'from-cyan-700';
     return 'from-cyan-700 to-blue-700'
   }
+  
   return (
     <div className={`mx-auto max-w-screen-md mt-4 py-5 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}>
       <TopButton setQuery={setQuery} />
@@ -37,6 +39,8 @@ function App() {
       <div>
         <TimeAndLocation weather={weather} />
         <TemperatureDetails weather={weather} />
+        <Forecast title="Hourly forecast" items={weather.hourly} />
+        <Forecast title="Daily forecast" items={weather.daily} />
       </div>
      )}
     </div>
