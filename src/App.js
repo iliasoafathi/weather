@@ -4,6 +4,7 @@ import TopButton from './components/TopButtons';
 import Inputs from './components/Inputs';
 import getFormattedWeatherData from './services/weatherServices';
 import TimeAndLocation from './components/TimeAndLocation';
+import TemperatureDetails from './components/TemperatureDetails';
 
 
 
@@ -35,6 +36,7 @@ function App() {
      {weather && (
       <div>
         <TimeAndLocation weather={weather} />
+        <TemperatureDetails weather={weather} />
       </div>
      )}
     </div>
