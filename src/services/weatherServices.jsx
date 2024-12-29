@@ -44,7 +44,7 @@ const getWeatherData = (infoType, searchParams) => {
   };
 
   const formatForecastWeather = (data) => {
-    console.log("Daily is undefined", data);
+    //console.log(data);
     let { timezone, daily, hourly } = data;
     daily = daily.slice(1, 6).map((d) => {
       return {
