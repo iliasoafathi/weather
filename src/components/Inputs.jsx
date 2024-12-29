@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { HiLocationMarker } from "react-icons/hi";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
   const [city, setCity] = useState("");
 
   const handleSearchClick = () => {
     if (city !== "") setQuery({ q: city });
+    else toast.error('Please enter a city name');
   };
 
   const handleLocationClick = () => {
@@ -65,6 +67,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
           </button>
         </div>
       </div>
+        <ToastContainer />
     </div>
   );
 };
