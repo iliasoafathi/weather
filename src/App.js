@@ -8,6 +8,7 @@ import TemperatureDetails from './components/TemperatureDetails';
 import Forecast from './components/Forecast';
 import { ToastContainer, toast } from 'react-toastify';
 import { ClipLoader } from "react-spinners";
+import ClickableMap from './components/ClickableMap';
 
 
 function App() {
@@ -55,8 +56,10 @@ function App() {
         <TemperatureDetails weather={weather} />
         <Forecast title="Hourly forecast" items={weather.hourly} />
         <Forecast title="Daily forecast" items={weather.daily} />
+      
       </div>
      )}
+       <ClickableMap setQuery={setQuery} />
       <ToastContainer />
     </div>
   );
