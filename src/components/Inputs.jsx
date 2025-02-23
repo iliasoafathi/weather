@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { HiLocationMarker } from "react-icons/hi";
 import { ToastContainer, toast } from 'react-toastify';
+import ClickableMap from "./ClickableMap";
 
 const Inputs = ({ setQuery, units, setUnits }) => {
   const [city, setCity] = useState("");
@@ -49,6 +50,8 @@ const Inputs = ({ setQuery, units, setUnits }) => {
           className="text-white cursor-pointer transition ease-out hover:scale-125"
           onClick={handleLocationClick}
         />
+        
+          <ClickableMap setQuery={setQuery} />
         <div className=" flex flex-row w-1/4 items-center justify-center">
           <button
             name="metric"

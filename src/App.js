@@ -59,7 +59,7 @@ function App() {
       
       </div>
      )}
-       <ClickableMap setQuery={setQuery} />
+       {/* <ClickableMap setQuery={setQuery} /> */}
       <ToastContainer />
     </div>
   );

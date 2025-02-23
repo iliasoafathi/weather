@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import './MapModal.css'; // Ajoute un fichier CSS pour styliser
+import { FaMapMarkedAlt } from "react-icons/fa";
 
 const customIcon = L.icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
@@ -35,17 +36,11 @@ const ClickableMap = ({ setQuery }) => {
 
     return (
         <>
-            <button
-                className="map-button"
-                onClick={openModal}
-            >
-                <img
-                    src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
-                    alt="Map icon"
-                    className="map-icon"
+         <FaMapMarkedAlt
+                  size={25}
+                  className=" text-white cursor-pointer transition ease-out hover:scale-125"
+                    onClick={openModal}
                 />
-                Open Map
-            </button>
             <Modal
                 isOpen={isOpen}
                 onRequestClose={closeModal}
