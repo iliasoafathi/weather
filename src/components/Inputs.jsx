@@ -9,10 +9,14 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 
   const handleSearchClick = () => {
     if (city !== "") setQuery({ q: city });
+    //pour afficher erreur fach tatkun city khawya
     else toast.error('Please enter a city name');
   };
 
   const handleLocationClick = () => {
+
+    //kayna f navigateur katjiblk localisation dyalk 
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         let lat = position.coords.latitude;
@@ -40,6 +44,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
+        {/*hado des icones kaynin f react*/}
         <BiSearchAlt2
           size={25}
           className="text-white cursor-pointer transition ease-out hover:scale-125"

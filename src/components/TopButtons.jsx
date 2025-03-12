@@ -23,13 +23,14 @@ const TopButton = ({ setQuery }) => {
       title: "Agadir",
     },
   ];
-
+//boucler sur la cities pour afficher les villes
   return (
     <div className="flex items-center justify-around my-6">
       {cities.map((city, index) => (
         <button
           className="text-white text-lg font-medium hover:scale-110 transition ease-out "
           key={index}
+          //bach tbdl la valeur d la ville setquerry
           onClick={() => setQuery({ q: city.title })}
         >
           {city.title}

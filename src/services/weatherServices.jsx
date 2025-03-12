@@ -3,6 +3,7 @@ const API_KEY = "3fc62ef15fdfb1a7f994d04c0b18b63b";
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 const getWeatherData = (infoType, searchParams) => {
+  {/* hna kandwdzo URL dyali dyal API + medina INFOTYPE, moraha API KEY w SEARCHPARAMS (wach mdina wla lon lat)*/}
     const url = new URL(BASE_URL + "/" + infoType);
     url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
     return fetch(url)
@@ -10,7 +11,7 @@ const getWeatherData = (infoType, searchParams) => {
       .then((data) => data);
   };
 
-
+//had katformi data li mkhrbqa 
   const formatCurrentWeather = (data) => {
     const {
       coord: { lat, lon },
@@ -22,7 +23,7 @@ const getWeatherData = (infoType, searchParams) => {
       wind: { speed },
     } = data;
   
-    const { main: details, icon } = weather[0];
+    const { main: details, icon } = weather[0];//array
   
     return {
       lat,
@@ -64,11 +65,12 @@ const getWeatherData = (infoType, searchParams) => {
     return { timezone, daily, hourly };
   };
 
+  //hadi hiya awel methode tatlanca
   const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentWeather = await getWeatherData(
       "weather",
       searchParams
-    ).then(formatCurrentWeather);
+    ).then(formatCurrentWeather); //hna eaytnalha bach tqad data 
   
     const { lat, lon } = formattedCurrentWeather;
   
@@ -81,9 +83,10 @@ const getWeatherData = (infoType, searchParams) => {
   
     return { ...formattedCurrentWeather, ...formattedForecastWeather };
   };
-
+//hado bach t afficher lwaqt ela hsab lfomra li bghiti
   const formatToLocalTime = (secs, zone, format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a") => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
   
+//kan3tiwh l code ohuwa ay3tina icon dyal dak taqs
   const iconUrlFromCode = (code) => `https://openweathermap.org/img/wn/${code}@2x.png`;
 
   export default getFormattedWeatherData;
